@@ -2,6 +2,12 @@
 
 set -e
 
+if [[ ! -d /opt/microchip/xc8 ]]; then
+	echo "Installing XC8 compiler"
+	${XC8_RUN} --mode unattended --netservername crap;
+	ln -s $(dirname $(find /opt/microchip/ -name "xc8-cc"))/* /usr/local/bin;
+fi
+
 if [[ -v REPO_URL ]]; then
 	if [[ ! -d ${REPO_DIR} ]]; then
 		echo "Initializing git repository"
