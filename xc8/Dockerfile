@@ -1,6 +1,5 @@
 FROM debian:stable-slim
 
-ENV REPO_DIR=/root/xc8-project
 ENV XC8_RUN=/opt/xc8.run
 
 RUN apt update; \

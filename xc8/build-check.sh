@@ -14,6 +14,17 @@
 # ----------------------------
 set -e
 
+# When running github actions the sensible thing to do is use actions/checkout. The source code
+# can then be found under GITHUB_WORKSPACE.
+#
+# The action also lets you choose a different subdirectory (relative to GITHUB_WORKSPACE),
+# REPO_DIR points to it.
+if [[ -v GITHUB_ACTIONS ]]; then
+	echo "Running inside a Github Runner. REPO_DIR will be used as a relative path to GITHUB_WORKSPACE."
+	REPO_DIR="${GITHUB_WORKSPACE}/${REPO_DIR}"
+	echo "Final REPO_DIR: ${REPO_DIR}"
+fi
+
 cd ${REPO_DIR}
 make clean
 
